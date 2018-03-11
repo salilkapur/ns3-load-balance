@@ -1,0 +1,98 @@
+CONGA
+=====
+
+Load: 0.1
+---------
+Start simulation
+  Avg. Flow Completion Time: 0.000210052
+  All Tx Packets: 356
+  All Rx Packets: 356
+  All Delay: 4.39055e-05
+  All Lost Packets: 0
+  All Drop Packets: 0
+  Packets Delivery Ratio: 100%
+  Packets Lost Ratio: 0%
+Stop simulation
+
+
+Load: 0.2
+---------
+Start simulation
+  Avg. Flow Completion Time: 0.00258642
+  All Tx Packets: 90859
+  All Rx Packets: 90186
+  All Delay: 0.000206347
+  All Lost Packets: 673
+  All Drop Packets: 4
+  Packets Delivery Ratio: 99%
+  Packets Lost Ratio: 0%
+Stop simulation
+
+
+Load: 0.3
+---------
+Start simulation
+  Avg. Flow Completion Time: 0.0031657
+  All Tx Packets: 265148
+  All Rx Packets: 263867
+  All Delay: 0.000253582
+  All Lost Packets: 727
+  All Drop Packets: 8
+  Packets Delivery Ratio: 99%
+  Packets Lost Ratio: 0%
+Stop simulation
+
+
+Load: 0.4
+---------
+Start simulation
+  Avg. Flow Completion Time: 0.00364658
+  All Tx Packets: 300090
+  All Rx Packets: 297330
+  All Delay: 0.000254644
+  All Lost Packets: 2752
+  All Drop Packets: 16
+  Packets Delivery Ratio: 99%
+  Packets Lost Ratio: 0%
+Stop simulation
+
+
+Load: 0.5
+---------
+Start simulation
+  Avg. Flow Completion Time: 0.00440795
+  All Tx Packets: 502684
+  All Rx Packets: 499681
+  All Delay: 0.000248348
+  All Lost Packets: 2374
+  All Drop Packets: 20
+  Packets Delivery Ratio: 99%
+  Packets Lost Ratio: 0%
+Stop simulation
+
+
+Load: 0.75
+----------
+Start simulation
+  Avg. Flow Completion Time: 0.00460744
+  All Tx Packets: 463001
+  All Rx Packets: 459977
+  All Delay: 0.000229592
+  All Lost Packets: 2719
+  All Drop Packets: 28
+  Packets Delivery Ratio: 99%
+  Packets Lost Ratio: 0%
+Stop simulation
+
+Load: 0.9
+---------
+Start simulation
+  Avg. Flow Completion Time: 0.00692098
+  All Tx Packets: 1115944
+  All Rx Packets: 1105604
+  All Delay: 0.000235739
+  All Lost Packets: 8890
+  All Drop Packets: 64
+  Packets Delivery Ratio: 99%
+  Packets Lost Ratio: 0%
+Stop simulation

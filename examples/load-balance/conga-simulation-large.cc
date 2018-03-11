@@ -231,6 +231,37 @@ void install_applications (int fromLeafId, NodeContainer servers, double request
     }
 }
 
+void printFlowStatistics(Ptr<FlowMonitor> flowMonitor) {
+    std::map<FlowId, FlowMonitor::FlowStats> stats = flowMonitor->GetFlowStats ();
+    int flowCount = 0;
+    uint32_t txPacketsum = 0;
+    uint32_t rxPacketsum = 0;
+    uint32_t DropPacketsum = 0;
+    uint32_t LostPacketsum = 0;
+    double Delaysum = 0;
+    double totalFlowCompletionTime = 0;
+
+    for (std::map<FlowId, FlowMonitor::FlowStats>::const_iterator i = stats.begin (); i != stats.end (); ++i)
+    {
+        flowCount++;
+        txPacketsum += i->second.txPackets;
+        rxPacketsum += i->second.rxPackets;
+        LostPacketsum += i->second.lostPackets;
+        DropPacketsum += i->second.packetsDropped.size();
+        Delaysum += i->second.delaySum.GetSeconds();
+        totalFlowCompletionTime += i->second.timeLastRxPacket.GetSeconds() - i->second.timeFirstTxPacket.GetSeconds();
+    }
+    
+    std::cout << "  Avg. Flow Completion Time: " << totalFlowCompletionTime/flowCount << "\n";
+    std::cout << "  All Tx Packets: " << txPacketsum << "\n";
+    std::cout << "  All Rx Packets: " << rxPacketsum << "\n";
+    std::cout << "  All Delay: " << Delaysum / txPacketsum <<"\n";
+    std::cout << "  All Lost Packets: " << LostPacketsum << "\n";
+    std::cout << "  All Drop Packets: " << DropPacketsum << "\n";
+    std::cout << "  Packets Delivery Ratio: " << ((rxPacketsum *100) / txPacketsum) << "%" << "\n";
+    std::cout << "  Packets Lost Ratio: " << ((LostPacketsum *100) / txPacketsum) << "%" << "\n";
+}
+
 int main (int argc, char *argv[])
 {
 #if 1
@@ -957,10 +988,10 @@ int main (int argc, char *argv[])
 
             if (runMode == TLB || runMode == DRB || runMode == PRESTO || runMode == WEIGHTED_PRESTO || runMode == Clove)
             {
-                std::pair<int, int> leafToSpine = std::make_pair<int, int> (i, j);
+                std::pair<int, int> leafToSpine = std::pair<int, int> (i, j);
                 leafToSpinePath[leafToSpine] = netDeviceContainer.Get (0)->GetIfIndex ();
 
-                std::pair<int, int> spineToLeaf = std::make_pair<int, int> (j, i);
+                std::pair<int, int> spineToLeaf = std::pair<int, int> (j, i);
                 spineToLeafPath[spineToLeaf] = netDeviceContainer.Get (1)->GetIfIndex ();
             }
 
@@ -1446,6 +1477,7 @@ int main (int argc, char *argv[])
     Simulator::Stop (Seconds (END_TIME));
     Simulator::Run ();
 
+    printFlowStatistics(flowMonitor);
     flowMonitor->SerializeToXmlFile(flowMonitorFilename.str (), true, true);
     linkMonitor->OutputToFile (linkMonitorFilename.str (), &LinkMonitor::DefaultFormat);
 
