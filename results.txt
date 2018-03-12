@@ -70,6 +70,16 @@ Start simulation
   Packets Lost Ratio: 0%
 Stop simulation
 
+Start simulation
+  Avg. Flow Completion Time: 0.008953
+  All Tx Packets: 596682
+  All Rx Packets: 592692
+  All Delay: 0.000267907
+  All Lost Packets: 3402
+  All Drop Packets: 40
+  Packets Delivery Ratio: 99%
+  Packets Lost Ratio: 0%
+Stop simulation
 
 Load: 0.75
 ----------
